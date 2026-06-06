@@ -1,0 +1,36 @@
+<div class="contenedor">
+  <h1>Jujutsu Kaisen - Personajes</h1>
+
+  @if (cargando()) {
+    <p class="estado">Cargando personajes...</p>
+  }
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  @if (!cargando() && personajes().length > 0) {
+    <div class="grid">
+      @for (personaje of personajes(); track personaje.nombre) {
+        <div class="tarjeta">
+          <img [src]="'images/' + personaje.imagen" [alt]="personaje.nombre" />
+          <div class="info">
+            <h2>{{ personaje.nombre }}</h2>
+            <span class="grado">{{ personaje.grado }}</span>
+            <p class="descripcion">{{ personaje.descripcion }}</p>
+            <div class="detalles">
+              <div class="detalle">
+                <span class="etiqueta">Técnica maldita</span>
+                <span class="valor">{{ personaje.tecnicaMaldita }}</span>
+              </div>
+              <div class="detalle">
+                <span class="etiqueta">Escuela</span>
+                <span class="valor">{{ personaje.escuela }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
